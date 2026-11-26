@@ -1,0 +1,19 @@
+extends layout.pug
+
+block title
+  title Список справ — To-Do App
+
+block content
+  h2 Поточний список завдань (#{tasks.length})
+
+  if tasks.length === 0
+    p Список завдань порожній. Додайте нову задачу через POST /api/tasks.
+  else
+    ul
+      each task in tasks
+        li
+          if task.completed
+            span.completed ##{task.id}: #{task.title}
+            span.badge [Виконано]
+          else
+            span ##{task.id}: #{task.title}
